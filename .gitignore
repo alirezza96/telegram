@@ -1,0 +1,4 @@
+node_modules
+pmpm-lock.ymal
+dist
+.env
