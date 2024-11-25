@@ -1,21 +1,24 @@
+import constants from "../../utils/constants"
+const { TODAY, YESTERDAY, THREE_DAYS_AGO, ONE_WEEK_AGO, ONE_MONTH_AGO } = constants.time
+const { HOME, BACK } = constants.navigation
 export const duration = () => {
     return {
         reply_markup: {
             keyboard: [
                 [
-                    { text: "امروز" },
-                    { text: "دیروز" },
+                    { text: TODAY },
+                    { text: YESTERDAY },
                 ],
                 [
-                    { text: "سه روز گذشته" },
-                    { text: "هفته گذشته" },
+                    { text: THREE_DAYS_AGO },
+                    { text: ONE_WEEK_AGO },
                 ],
                 [
-                    { text: "ماه گذشته" },
+                    { text: ONE_MONTH_AGO },
                 ],
                 [
-                    { text: "خانه" },
-                    { text: "بازگشت" }
+                    { text: HOME },
+                    { text: BACK }
                 ],
             ]
         }
