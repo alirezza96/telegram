@@ -1,6 +1,6 @@
 import constants from "../../utils/constants"
-const { HOME, BACK } = constants.navigation
-export const navigation = [
-    { text: HOME, callback_data: `callback_${HOME}` },
-    { text: BACK, callback_data: `callback_${BACK}` },
+
+export const navigation = (backTo: string) => [
+    { text: constants.navigation.HOME.fullname, callback_data: `callback_${constants.navigation.HOME.shortname}` },
+    { text: constants.navigation.BACK.fullname, callback_data: `callback_${backTo}` },
 ]

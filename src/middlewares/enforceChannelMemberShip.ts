@@ -19,8 +19,8 @@ const enforceChannelMembership: MiddlewareFn<Context> = async (ctx, next) => {
                 if (memberShipStatus.includes(memberShip.status)) {
                     nonMemberChannels.push(channel)
                 }
-            } catch (error) {
-                console.error("خطا در بررسی کانال", channel.name, "=>", error)
+            } catch (error ) {
+                console.error("error in channel ", channel.name, "=>", error)
             }
         }
         if (!nonMemberChannels.length) {

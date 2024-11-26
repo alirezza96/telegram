@@ -1,6 +1,7 @@
 import { Context } from "telegraf";
-
+import mainMenu from "./mainMenu";
 export default async function contact(ctx: Context) {
+    console.log("ctx message id", ctx)
     const chatId = ctx.from?.id;
     if (!chatId || !ctx.message || !("contact" in ctx.message) || !ctx.message.contact) {
         return ctx.reply("No valid contact information found.");
@@ -14,8 +15,12 @@ export default async function contact(ctx: Context) {
             },
             body: JSON.stringify({ phoneNumber }),
         })
+        if (response.status === 200) {
+            await mainMenu(ctx)
+            return
+        }
         const result = await response.json()
-        ctx.reply(result.message);
+        await ctx.reply(result.message);
 
     } catch (error) {
         console.error("Error processing contact:", error);
