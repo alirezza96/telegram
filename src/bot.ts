@@ -41,7 +41,6 @@ for (const report of Object.values(constants.reports)) {
 }
 for (const report of Object.values(constants.reports)) {
     for (const time of Object.values(constants.time)) {
-        console.log(`callback_report_${report.shortname}_${time.shortname}`)
         bot.action(`callback_report_${report.shortname}_${time.shortname}`, (ctx) => reportResult(report, time, ctx))
     }
 }

@@ -13,7 +13,7 @@ export default async function contact(ctx: Context) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ phoneNumber }),
+            body: JSON.stringify({ phoneNumber: phoneNumber.replace("+", "") }),
         })
         if (response.status === 200) {
             await mainMenu(ctx)

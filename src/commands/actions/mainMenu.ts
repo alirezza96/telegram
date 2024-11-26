@@ -4,9 +4,10 @@ import getPhoneNumber from "../reply/getPhoneNumber";
 
 export default async function mainMenu(ctx: Context) {
     try {
-        if (ctx.message && "text" in ctx.message && ctx.message.text === '/start') {
-            await ctx.deleteMessage(ctx.message.message_id)
-        }
+        await ctx.deleteMessage()
+        // if (ctx.message && "text" in ctx.message && ctx.message.text === '/start') {
+        //     await ctx.deleteMessage(ctx.message.message_id)
+        // }
         const chatId = ctx.from!.id;
         const response = await fetch(`http://127.0.0.1:4001/start?chatId=${chatId}`);
         if (response.status === 404) {

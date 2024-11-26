@@ -9,11 +9,11 @@ const constants = {
         REPORTS: { fullname: "گزارشات", shortname: "reports" }
     },
     time: {
-        TODAY: {fullname: "امروز", shortname: "today"},
-        YESTERDAY: {fullname: "دیروز", shortname: "yesterday"},
-        THREE_DAYS_AGO: {fullname: "سه روز گذشته", shortname: "3days"},
-        ONE_WEEK_AGO: {fullname: "هفته گذشته", shortname: "1week"},
-        ONE_MONTH_AGO: {fullname: "ماه گذشته", shortname: "1month"},
+        TODAY: {fullname: "امروز", shortname: "0_day"},
+        YESTERDAY: {fullname: "دیروز", shortname: "1_day"},
+        THREE_DAYS_AGO: {fullname: "سه روز گذشته", shortname: "3_days"},
+        ONE_WEEK_AGO: {fullname: "هفته گذشته", shortname: "1_week"},
+        ONE_MONTH_AGO: {fullname: "ماه گذشته", shortname: "1_month"},
     },
     reports: {
         AMAR_TAMAS: { fullname: "آمار تماس", shortname: "amar_tamas" },
