@@ -1,29 +1,42 @@
 import { Context } from "telegraf";
 import mainMenu from "./mainMenu";
+import { IBotUser } from "../../types/bot";
+
 export default async function contact(ctx: Context) {
-    console.log("ctx message id", ctx)
-    const chatId = ctx.from?.id;
-    if (!chatId || !ctx.message || !("contact" in ctx.message) || !ctx.message.contact) {
+    if (!ctx.message || !("contact" in ctx.message) || !ctx.message.contact) {
         return ctx.reply("No valid contact information found.");
     }
-    const phoneNumber = ctx.message.contact.phone_number;
+    const { id, first_name, last_name, username } = ctx.message.from;
+    const phoneNumber = ctx.message.contact.phone_number as string;
+    const response = await fetchData({
+        id, first_name, last_name, username,
+        phoneNumber
+    });
+    if(response.status === 400){
+        return ctx.sendMessage("verification code send to your phone number")
+    }
+    const result = await response.json();
+
+    console.log("contact response =>", response.status)
+    await ctx.reply(`${result.message} - description`);
+    return
+}
+
+
+
+
+const fetchData = async (body: { phoneNumber: string } & IBotUser) => {
+    const { phoneNumber, id } = body
     try {
-        const response = await fetch(`http://127.0.0.1:4001/register?chatId=${chatId}`, {
+        return await fetch(`http://127.0.0.1:4001/register?id=${id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ phoneNumber: phoneNumber.replace("+", "") }),
+            body: JSON.stringify({ ...body, phoneNumber: phoneNumber.replace("+", "") }),
         })
-        if (response.status === 200) {
-            await mainMenu(ctx)
-            return
-        }
-        const result = await response.json()
-        await ctx.reply(result.message);
-
     } catch (error) {
         console.error("Error processing contact:", error);
-        ctx.reply("خطایی رخ داده است. لطفاً دوباره تلاش کنید.");
+        throw new Error("خطایی رخ داده است. لطفاً دوباره تلاش کنید.");
     }
 }

@@ -1,12 +1,12 @@
 import { Context } from "telegraf";
 
-export default async function getPhoneNumber(ctx: Context): Promise<number> {
-    const message = await ctx.reply("جهت استفاده از برنامه شماره همراه خود را ارسال کنید", {
+export default  function getPhoneNumber(ctx: Context) {
+    ctx.reply("for use robot share contact", {
         reply_markup: {
             keyboard: [
                 [
                     {
-                        text: "📞 ارسال شماره همراه",
+                        text: "📞 share contact",
                         request_contact: true
                     },
                 ],
@@ -15,7 +15,4 @@ export default async function getPhoneNumber(ctx: Context): Promise<number> {
             one_time_keyboard: true, // Close keyboard after user response
         },
     });
-
-
-    return message.message_id
 }
